@@ -33,13 +33,13 @@ const navigateCamera = (xAxis, itemRadius, lookAt)=>{
         world.camera.position.z = position.z;
     } 
     
-    var tween = new TWEEN.Tween(position).to(target, 2000);
+    var tween = new TWEEN.Tween(position).to(target, 3000);
 
     // console.log('look at ', target)
     // world.camera.lookAt( lookAt.x, lookAt.y, lookAt.z )
  
     tween.onUpdate(update);
-    tween.delay(500)
+    tween.delay(300)
     tween.easing(TWEEN.Easing.Elastic.InOut)
     tween.start();
 }
@@ -52,4 +52,12 @@ const navigationEvent = ( x, y, z )=>{
     world.position.z = z
 }
 
-export { navigationEvent, navigateToSpaceItem }
+const adjustLookAt = (x,y,z)=>{
+    const world = new worldSetup()
+    world.cLookAt.x = x
+    world.cLookAt.y = y
+    world.cLookAt.z = z
+    
+}
+
+export { navigationEvent, navigateToSpaceItem, adjustLookAt }

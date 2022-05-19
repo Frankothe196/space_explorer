@@ -6,6 +6,9 @@ import { Loader } from './loader'
 
 import {InterfaceDiv} from '../components/interface'
 import TWEEN from 'tween'
+import { adjustLookAt } from './navigation'
+
+
 export default class worldSetup{
     static instance
     constructor(_options = {}){
@@ -15,8 +18,9 @@ export default class worldSetup{
             return worldSetup.instance
         }
         worldSetup.instance = this
-        this.camera=""
-        this.position = {}
+        this.wHeight=window.innerHeight
+        this.wWidth=window.innerWidth
+        this.position={}
         this.position.x=0
         this.position.y=0
         this.position.z=0
@@ -30,6 +34,10 @@ export default class worldSetup{
         this.cLookAt.x=0
         this.cLookAt.y=0
         this.cLookAt.z=0
+        this.mouse={}
+        this.mouse.x=0
+        this.mouse.y=0
+        this.zoomLevel=12
         this.LoadData = DataToLoader
         this.targetElementId = _options.targetElementId
         this.setScene()
@@ -38,9 +46,9 @@ export default class worldSetup{
         this.setLights()
         this.setItems()
         this.setWorld()
-        this.setView()
+        this.onResize()
+        this.adjustView()
         this.update()
-
     }
     setScene(){
         this.scene = new THREE.Scene()
@@ -53,17 +61,9 @@ export default class worldSetup{
         // this.cameraControls= new OrbitControls( this.camera, this.renderer.domElement )
         // this.cameraControls.enableDamping = true
         this.camera.lookAt(10,20,0)
+        this.camera.setFocalLength(15)
     }
 
-    onResize(){
-        this.camera.aspect = window.innerWidth / window.innerHeight;
-        this.camera.updateProjectionMatrix();
-        
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-
-        window.addEventListener('resize', this.onResize)
-    }
     
     setCameraLook(x,y,z){
         this.position.x=x
@@ -95,16 +95,48 @@ export default class worldSetup{
         });
     }
 
-    setView(){
+    adjustView(){
+        this.view.mouseMove = (_event)=>{
+            let midPosX = (_event.clientX-this.wWidth/2)*0.1
+            let midPosY = (_event.clientY-this.wHeight/2)*0.1
 
-        // console.log(obj)
-        // this.scene.traverse(function(obj){
-        // })
-        // this.view.mouseMove = (e)=>{
-        //     // console.log(e)
-        // }
+            adjustLookAt(this.position.x+midPosX ,this.position.y - midPosY, this.position.z)
+        }
+        
+        this.view.changeZoom = (_event)=>{
+            if(this.zoomLevel>=40)this.zoomLevel=40
+            if(this.zoomLevel<=12)this.zoomLevel=12
+            if(this.zoomLevel<=40 && this.zoomLevel>=12){
+
+                if(_event.deltaY>0){
+                    this.zoomLevel-=1
+                }else if(_event.deltaY<0){
+                    this.zoomLevel+=1
+                }
+                // this.camera.zoom = this.zoomLevel
+                console.log(this.zoomLevel)
+                this.camera.setFocalLength(this.zoomLevel)
+            }
+        }
+
+        window.addEventListener('mousemove', this.view.mouseMove)
+        window.addEventListener('wheel', this.view.changeZoom)
+
+    }
+
+    onResize(){
+        this.view.onResize = ()=>{
+            this.wWidth=window.innerWidth
+            this.wHeight=window.innerHeight
             
-        // window.addEventListener('mousemove', this.view.mouseMove)
+            this.renderer.setPixelRatio( window.devicePixelRatio );
+            this.renderer.setSize( window.innerWidth, window.innerHeight );
+    
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+        }
+
+        window.addEventListener('resize', this.view.onResize)
     }
 
     update(){
@@ -114,8 +146,10 @@ export default class worldSetup{
 
         
         // this.cameraControls.update()
-        
-        this.camera.lookAt(this.position.x,this.position.y,this.position.z)
+
+
+
+        this.camera.lookAt(this.cLookAt.x, this.cLookAt.y, this.cLookAt.z)
         // console.log('Movex: ',this.move.x)
         // console.log('Movex: ',this.move.y)
         

@@ -25,7 +25,7 @@ export default function ThreeJs(){
             }
             name = FactsLoader.objectNames[position]
             title.innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading
-            details.innerHTML = position==0?'start a journey':FactsLoader[name].heading
+            details.innerHTML = position==0?'start a journey':FactsLoader[name].details
             forwardBtn.innerHTML = 'visit next space object'
             //load facts
             facts.innerHTML = ''

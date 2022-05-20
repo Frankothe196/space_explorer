@@ -17,15 +17,15 @@ let DataToLoader =
         items:[
             { name:"background", type:"background", source:backgroundTexture
             },
-            { name:"earth", type:"texture", radius:40, position:{x:0,y:0,z:0}, source:{ 
+            { name:"earth", type:"texture", radius:30, position:{x:0,y:0,z:0}, source:{ 
                 texture: earthTexture,
                 bump: earthBump,
             }},
-            { name:"earthClouds", type:"image", radius:41, position:{x:0,y:0,z:0}, source:{ 
+            { name:"earthClouds", type:"image", radius:30.5, position:{x:0,y:0,z:0}, source:{ 
                 texture: earthCloudsTexture
             }},
             
-            {name:"moon", type:"texture", radius:15, position:{x:180,y:0,z:0}, source:{ 
+            {name:"moon", type:"texture", radius:10, position:{x:180,y:0,z:0}, source:{ 
                 texture: moonTexture,
                 bump: moonBump,
             }},

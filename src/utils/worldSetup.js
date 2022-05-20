@@ -56,7 +56,7 @@ export default class worldSetup{
 
     setCamera(){
         this.view={}
-        this.camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000)
+        this.camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 10000)
         this.camera.position.set( -70, 0, 70 )
         // this.cameraControls= new OrbitControls( this.camera, this.renderer.domElement )
         // this.cameraControls.enableDamping = true

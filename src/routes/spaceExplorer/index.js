@@ -7,63 +7,59 @@ import { FactsLoader } from "../../utils/resources"
 
 export default function ThreeJs(){
     const [position,setPosition] = useState(0)
+    
+    
     useEffect(()=>{
-        //I dont completely understand why state delays to update on first click
-        setPosition(()=>position+1)
+        const forwardBtn = document.getElementById("spaceExplorerBtnForward")
+        const backwardBtn = document.getElementById("spaceExplorerBtnBackward")
+        const title = document.getElementById("spaceItemTitle")
+        const details = document.getElementById("spaceItemDetails")
+        const facts = document.getElementById("spaceItemFactList")
+        let name
+
+        if(position>=1){
+            if(position>=2){
+                backwardBtn.style.visibility = 'visible'
+            }else{
+                backwardBtn.style.visibility = 'hidden'
+            }
+            name = FactsLoader.objectNames[position]
+            title.innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading
+            details.innerHTML = position==0?'start a journey':FactsLoader[name].heading
+            forwardBtn.innerHTML = 'visit next space object'
+            //load facts
+            facts.innerHTML = ''
+            FactsLoader[name].facts.forEach(element => {
+                let li = document.createElement('li')
+                li.appendChild(document.createTextNode(element))
+                facts.appendChild(li)
+            });
+            navigateToSpaceItem(name)
+        }else{
+            title.innerHTML = 'Begin Learning of space'
+            details.innerHTML = ''
+            facts.innerHTML = ''
+            backwardBtn.style.visibility= 'hidden'
+            forwardBtn.innerHTML = 'Begin Exploring'
+        }
+    },[position])
+  
+    useEffect(()=>{
         const world = new WorldSetup({targetElementId:"threeWorld"})
-        let name = FactsLoader.objectNames[position]
-        document.getElementById("spaceExplorerBtnForward").innerHTML = position==0?'Begin Exploring':FactsLoader[name].heading
-        document.getElementById("spaceExplorerBtnBackward").style.visibility= 'hidden'
-        document.getElementById("spaceItemTitle").innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading
-        document.getElementById("spaceItemDetails").innerHTML = position==0?'start a journey':FactsLoader[name].heading
-        
     }
     ,[])
-    const handleEventForward = () => {
-        console.log('forwards, '. position)
-        
-        let length = FactsLoader.objectNames.length
-        if(position<length){
-            setPosition(()=>position+1)
-            let name = FactsLoader.objectNames[position]
-            navigateToSpaceItem(name)
-            if(position>1)document.getElementById("spaceExplorerBtnBackward").style.visibility= 'visible'
-            document.getElementById("spaceExplorerBtnForward").innerHTML = position==0?'Start':'Travel to next space object'
-            document.getElementById("spaceItemTitle").innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading   
-            document.getElementById("spaceItemDetails").innerHTML = position==0?'start a journey':FactsLoader[name].details
-            document.getElementById("spaceItemFactList").innerHTML=''
-            if(position!=0){
-                FactsLoader[name].facts.forEach(element => {
-                    let li = document.createElement('li')
-                    li.appendChild(document.createTextNode(element))
-                    document.getElementById("spaceItemFactList").appendChild(li)
-                });
-            }
 
-        }
+    const handleEventForward = () => {
+        console.log('forwards, '+ position) 
+        let length = FactsLoader.objectNames.length
+        if(position<length-1)
+            setPosition(count=>count+1)
       }
 
       const handleEventBackward= () => {
-          console.log('backwards, '. position)
-          if(position>=1){
-            setPosition(()=>position-1)
-            let name = FactsLoader.objectNames[position]
-            navigateToSpaceItem(name)
-            
-            if(position==1)document.getElementById("spaceExplorerBtnBackward").style.visibility= 'hidden'
-            document.getElementById("spaceExplorerBtnForward").innerHTML = position==0?'Start':'Travel to next space object'
-            document.getElementById("spaceItemTitle").innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading   
-            document.getElementById("spaceItemDetails").innerHTML = position==0?'start a journey':FactsLoader[name].details
-            document.getElementById("spaceItemFactList").innerHTML=''
-            if(position!=0){
-                FactsLoader[name].facts.forEach(element => {
-                    let li = document.createElement('li')
-                    li.appendChild(document.createTextNode(element))
-                    document.getElementById("spaceItemFactList").appendChild(li)
-                });
-            }
-
-        }
+          console.log('backwards, '+ position)
+          if(position>1)
+            setPosition(count=>count-1)
       }
       
       return (

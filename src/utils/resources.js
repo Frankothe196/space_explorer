@@ -45,7 +45,7 @@ let FactsLoader = {
             "Rotation Time: 24 hours",
             "temparature ranges from -89 C to 70 C",
             "Molten core creates a magnetic field",
-            "Earth magnetic field stops the sun radiation from blowng the atmosphere away",
+            "Earth magnetic field stops the sun radiation from blowing the atmosphere away",
             "Human beings along with 8.7 million species call Earth home",
             "4.5 billion years old",
         ]

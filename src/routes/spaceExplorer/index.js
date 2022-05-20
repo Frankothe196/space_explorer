@@ -7,7 +7,7 @@ import { FactsLoader } from "../../utils/resources"
 
 export default function ThreeJs(){
     const [position,setPosition] = useState(0)
-    
+    let length = FactsLoader.objectNames.length
     
     useEffect(()=>{
         const forwardBtn = document.getElementById("spaceExplorerBtnForward")
@@ -20,9 +20,12 @@ export default function ThreeJs(){
         if(position>=1){
             if(position>=2){
                 backwardBtn.style.visibility = 'visible'
+                if(position==length-1)
+                    forwardBtn.style.visibility = 'hidden'
             }else{
                 backwardBtn.style.visibility = 'hidden'
             }
+            
             name = FactsLoader.objectNames[position]
             title.innerHTML = position==0?'Begin Learning of space':FactsLoader[name].heading
             details.innerHTML = position==0?'start a journey':FactsLoader[name].details
@@ -51,7 +54,6 @@ export default function ThreeJs(){
 
     const handleEventForward = () => {
         console.log('forwards, '+ position) 
-        let length = FactsLoader.objectNames.length
         if(position<length-1)
             setPosition(count=>count+1)
       }

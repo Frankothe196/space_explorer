@@ -30,8 +30,22 @@ canvas{
             font-family: "Poppins", sans-serif;
             color: white;
             margin: 30px;
+
+            li{
+                margin: 5px;
+                font-size: 1.1rem;
+            }
         }
     }
+    
+    .tips{
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: whitesmoke;
+        opacity: 0.8;
+    }
+
     button{
         position: absolute;
         bottom: 20%;
@@ -44,6 +58,11 @@ canvas{
         padding: 10px 20px;
         border-radius: 15px; 
         pointer-events: all;
+        transition:  300ms ease-out;
+        &:hover{
+            transform: translate(-50%, 5px);
+            background: green;
+        }
 
         &:nth-of-type(2){
             visibility: hidden;

@@ -13,6 +13,8 @@ export const InterfaceDiv = ({onPressForward, onPressBackward}) => {
             </div>
             <button id='spaceExplorerBtnForward' onClick={onPressForward}>Begin Exploring</button>
             <button id='spaceExplorerBtnBackward' onClick={onPressBackward}>back</button>
+
+            <span className='tips'>move mouse to look around | scroll to zoom</span>
     </div>
     )
 }

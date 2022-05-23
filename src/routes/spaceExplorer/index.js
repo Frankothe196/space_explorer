@@ -22,6 +22,8 @@ export default function ThreeJs(){
                 backwardBtn.style.visibility = 'visible'
                 if(position==length-1)
                     forwardBtn.style.visibility = 'hidden'
+                else
+                    forwardBtn.style.visibility = 'visible'
             }else{
                 backwardBtn.style.visibility = 'hidden'
             }

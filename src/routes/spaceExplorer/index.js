@@ -5,6 +5,9 @@ import {InterfaceDiv} from '../../components/interface'
 import { navigateToSpaceItem } from '../../utils/navigation'
 import { FactsLoader } from "../../utils/resources"
 
+
+import Loading from '../../components/loading'
+
 export default function ThreeJs(){
     const [position,setPosition] = useState(0)
     let length = FactsLoader.objectNames.length
@@ -68,6 +71,7 @@ export default function ThreeJs(){
       
       return (
           <>
+            <Loading/>
             <InterfaceDiv onPressForward={handleEventForward} onPressBackward={handleEventBackward}/>
             <div id="threeWorld"></div>
         </>

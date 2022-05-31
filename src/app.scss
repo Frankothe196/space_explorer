@@ -1,3 +1,6 @@
+@import url('styles/interface.scss');
+@import url('styles/loading.scss');
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -6,4 +9,9 @@
 
 body{
     overflow: hidden;
+}
+
+canvas{
+    position:relative;
+    z-index: 1;
 }

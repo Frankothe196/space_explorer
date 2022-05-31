@@ -1,6 +1,3 @@
-// import {StyleDiv} from "../styles/interface" styled-componenets
-import '../styles/interface.scss'
-
 export const InterfaceDiv = ({onPressForward, onPressBackward}) => {
 
     return(

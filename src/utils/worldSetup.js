@@ -45,7 +45,7 @@ export default class worldSetup{
         this.setCamera()
         this.setLights()
         this.setItems()
-        this.setWorld()
+        // this.setWorld()
         this.onResize()
         this.adjustView()
         this.update()
@@ -81,8 +81,8 @@ export default class worldSetup{
     }
 
     setWorld(){
-        this.gridHelper= new THREE.GridHelper( 500,500 )
-        this.scene.add( this.gridHelper )
+        // this.gridHelper= new THREE.GridHelper( 500,500 )
+        // this.scene.add( this.gridHelper )
     }
 
     setLights(){

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
 .interface{
     position: fixed;
     top: 0;
@@ -13,19 +15,25 @@
         top: 5%;
         left: 5%;
         h1{
-            font-family: "Poppins", sans-serif;
-            font-size: 5rem;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 6rem;
             color: white;
+            opacity: 0.96;
         }
         p{
             font-size: 1.5rem;
-            font-family: "Poppins", sans-serif;
+            font-family: "Rajdhani", sans-serif;
+            font-weight: 600;
+            font-style: normal; 
             color: white;
             margin: 10px;
+
         }
         ul{
-            font-family: "Poppins", sans-serif;
-            color: white;
+            font-family: "Rajdhani", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            color: rgb(63, 146, 247);
             margin: 30px;
 
             li{
@@ -49,16 +57,22 @@
         left: 50%;
         transform: translate(-50%,0);
         border: none;
-        background: blue;
+        background: none;
         color: white;
         font-size: 1.5rem;
         padding: 10px 20px;
         border-radius: 15px; 
         pointer-events: all;
         transition:  300ms ease-out;
+        border: 2px solid rgb(0, 68, 255);
+        font-family: "Rajdhani", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        box-shadow: inset 0 0 5px rgba(157, 5, 5, 0.3);
         &:hover{
+            box-shadow: inset 0 0 5px rgba(157, 5, 5, 0.6);
             transform: translate(-50%, 5px);
-            background: green;
+            background: rgb(28, 162, 28, 0.5);
         }
 
         &:nth-of-type(2){

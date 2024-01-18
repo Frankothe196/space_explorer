@@ -16,8 +16,8 @@ class Lighting {
         this.scene.add(this.lights.pointLight)
         
         this.lights.pointLight.position.set(0,100,0)
-        this.lights.pointLightHelper = new THREE.PointLightHelper(this.lights.pointLight,1)
-        this.scene.add(this.lights.pointLightHelper)
+        // this.lights.pointLightHelper = new THREE.PointLightHelper(this.lights.pointLight,1)
+        // this.scene.add(this.lights.pointLightHelper)
 
         
     }

@@ -61,7 +61,7 @@ let FactsLoader = {
             "temparature ranges from -50 oC to 120oC",
             "No water and soil",
             "No signs of Life",
-            "Does not Rotate",
+            "Does not Rotate (tidal lock with the earth)",
             "One side of the moon permanently faces the earth ( geostationary lock )"
         ]
     },

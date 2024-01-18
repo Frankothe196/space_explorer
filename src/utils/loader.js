@@ -28,7 +28,7 @@ class Loader{
         let ImageTexture = data.source.texture
         let radius= data.radius
 
-        const itemGeometry = new THREE.SphereGeometry(radius, radius*2, radius*2)
+        const itemGeometry = new THREE.SphereGeometry(radius, radius*10, radius*10)
         const itemMaterial = new THREE.MeshPhongMaterial({
             map: new THREE.TextureLoader().load(ImageTexture),
             transparent: true

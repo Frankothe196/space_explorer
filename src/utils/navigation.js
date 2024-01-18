@@ -33,7 +33,7 @@ const navigateCamera = (xAxis, itemRadius, lookAt)=>{
         world.camera.position.z = position.z;
     } 
     
-    var tween = new TWEEN.Tween(position).to(target, 3000);
+    var tween = new TWEEN.Tween(position).to(target, 6000);
 
     // console.log('look at ', target)
     // world.camera.lookAt( lookAt.x, lookAt.y, lookAt.z )

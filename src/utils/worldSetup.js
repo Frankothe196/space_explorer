@@ -143,26 +143,25 @@ export default class worldSetup{
         window.requestAnimationFrame(()=>{
             this.update()
         })
-
         
         // this.cameraControls.update()
 
 
-
         this.camera.lookAt(this.cLookAt.x, this.cLookAt.y, this.cLookAt.z)
-        // console.log('Movex: ',this.move.x)
-        // console.log('Movex: ',this.move.y)
         
         this.scene.traverse(function(obj){
             // console.log(obj)
             if(obj.name=='earthClouds'){
-                obj.rotation.y+= 0.0008
+                obj.rotation.y+= 0.004
             }
             if(obj.name=='earth'){
-                obj.rotation.y+= 0.0004
+                obj.rotation.y+= 0.002
             }
             if(obj.name=='sun'){
-                obj.rotation.y+= 0.00009
+                obj.rotation.y+= 0.0009
+            }
+            if(obj.name=='moon'){
+                obj.rotation.y+= 0.0004
             }
         })
         TWEEN.update();

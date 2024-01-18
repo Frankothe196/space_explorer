@@ -6,7 +6,6 @@ const Loading = ()=>{
         window.addEventListener('load', function () {
             setTimeout(() => {
                 loadDivRef.current.className="loading hidden"
-                
             }, 2000);
             setLoader(true)
         })
